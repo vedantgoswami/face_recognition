@@ -17,7 +17,7 @@ encodings = face_recognition.face_encodings(image, locations)
 ~~~
 
 In the above code images present in the unknown directory are loaded and the all the faces in the images are detected.
-and the cormer location of every face is stored in the location variable and only that area is encoded 
+and the corner point location of every face is stored in the location variable and only that area is encoded 
 
 ### Here are the face detection sample 
 ![Capture1](https://user-images.githubusercontent.com/56600948/84248081-8e233380-ab26-11ea-9974-d1d484dc88bf.PNG)
@@ -33,7 +33,14 @@ _NOTE_ :**Tolerance** – How much distance between faces to consider it a match
                         you can achive higher accuracy by decreasing the threshold
                         
   ### Here is the detected face of mine
-  
-                      
+![Capture4](https://user-images.githubusercontent.com/56600948/84250547-ced07c00-ab29-11ea-819b-09e4792a5f5e.png)
+![Capture3](https://user-images.githubusercontent.com/56600948/84250558-d2fc9980-ab29-11ea-871e-60982fb3f8b8.png)
+![Capture4](https://user-images.githubusercontent.com/56600948/84252135-d4c75c80-ab2b-11ea-8d13-1c148d329068.PNG)
+
+
+
+
+## Thank You 
+
                         
                         

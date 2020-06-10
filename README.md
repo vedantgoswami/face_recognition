@@ -24,3 +24,16 @@ and the cormer location of every face is stored in the location variable and onl
 ![Capture](https://user-images.githubusercontent.com/56600948/84248091-91b6ba80-ab26-11ea-9492-65a261ffc57a.PNG)
 ![Capture2](https://user-images.githubusercontent.com/56600948/84248105-967b6e80-ab26-11ea-8049-f285c428f449.PNG)
 
+### Face recognition
+After this the encoded faces are compared with the known faces and if the faces match then we assign the label (which is actually the folder name in which the images of known person is kept)
+
+> results = face_recognition.compare_faces(known_faces, face_encoding, TOLERANCE)
+
+_NOTE_ :**Tolerance** – How much distance between faces to consider it a match. Lower is more strict. 0.6 is typical best performance.
+                        you can achive higher accuracy by decreasing the threshold
+                        
+  ### Here is the detected face of mine
+  
+                      
+                        
+                        

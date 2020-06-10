@@ -20,3 +20,4 @@ In the above code images present in the unknown directory are loaded and the all
 and the cormer location of every face is stored in the location variable and only that area is encoded 
 
 ### Here are the face detection sample 
+![Capture1](https://user-images.githubusercontent.com/56600948/84247186-55368f00-ab25-11ea-9b8c-3f55e93f7b87.PNG)

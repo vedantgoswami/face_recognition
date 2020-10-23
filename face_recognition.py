@@ -34,22 +34,17 @@ print("Done!..........")
 
 print('Processing unknown faces...')
 # Now let's loop over a folder of faces we want to label
-for filename in os.listdir(UNKNOWN_FACES_DIR):
+while True:
 
-    # Load image
-    print(f'Filename {filename}', end='')
-    image = face_recognition.load_image_file(f'{UNKNOWN_FACES_DIR}/{filename}')
-
-    # location contains the end points of faces 
+    rect,image=video.read()
+    image=cv2.cvtColor(image,cv2.COLOR_RGB2GREY)
+    # This time we first grab face locations - we'll need them to draw boxes
     locations = face_recognition.face_locations(image, model=MODEL)
-
-    # now we will encode the face whication have the above locations because encoding the whole image is time consuming and not efficient
-    
     encodings = face_recognition.face_encodings(image, locations)
 
     # We passed our image through face_locations and face_encodings, so we can modify it
     # First we need to convert it from RGB to BGR as we are going to work with cv2
-    image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
+    
 
     # But this time we assume that there might be more faces in an image - we can find faces of dirrerent people
     print(f', found {len(encodings)} face(s)')
@@ -64,7 +59,7 @@ for filename in os.listdir(UNKNOWN_FACES_DIR):
         match = None
         if True in results:  # If at least one is true, get a name of first of found labels
             match = known_names[results.index(True)]
-            print(f' - {match} from {results}')
+            print(f'Match Found: - {match}')
 
             # Each location contains positions in order: top, right, bottom, left
             top_left = (face_location[3], face_location[0])
@@ -78,15 +73,18 @@ for filename in os.listdir(UNKNOWN_FACES_DIR):
 
             # Now we need smaller, filled grame below for a name
             # This time we use bottom in both corners - to start from bottom and move 50 pixels down
-            top_left = (face_location[3], face_location[2])
-            bottom_right = (face_location[1], face_location[2] + 30)
+            top_left = (face_location[3]+50, face_location[2])
+            bottom_right = (face_location[1], face_location[2])
 
             # Paint frame
-            cv2.rectangle(image, top_left, bottom_right, color)
+            cv2.rectangle(image, top_left, bottom_right, color, cv2.FILLED)
 
             # Wite a name
-            cv2.putText(image, match, (face_location[3] + 10, face_location[2] + 30), cv2.FONT_HERSHEY_SIMPLEX, 1.5, (84, 84, 252), FONT_THICKNESS)
-    image = cv2.resize(image, (1000,1000)) 
-    cv2.imshow(filename, image)
-    cv2.waitKey(0)
-    cv2.destroyWindow(filename)
+            cv2.putText(image, match, (face_location[3] + 10, face_location[2] + 15), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (200, 200, 200), FONT_THICKNESS)
+
+    image = cv2.resize(image, (700,700)) 
+    cv2.imshow("video",image)
+    if cv2.waitKey(1) & 0xFF==ord("q"):
+            break
+    
+    
